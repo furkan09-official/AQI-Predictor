@@ -6,7 +6,7 @@ import pandas as pd
 import joblib
 def model_training(df):
 
-    x = df.drop('AQI', axis = 1)
+    x = df.drop(columns = ['AQI','NO','NO2','NOx','NH3','CO','SO2','O3','AQI_Bucket'], axis = 1)
     y = df['AQI']
 
     x_train , x_test , y_train , y_test = train_test_split(x ,y, test_size =0.2 , random_state=26)
