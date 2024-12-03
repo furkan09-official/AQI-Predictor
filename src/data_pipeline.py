@@ -19,7 +19,7 @@ def preprocessed_data(df):
     'Severe': 6
    }
 
-    df['AQI_Category_Encoded'] = df['AQI_Category'].map(encoding)
+    df['AQI_Bucket'] = df['AQI_Bucket'].map(encoding)
 
     return df
 

@@ -3,10 +3,10 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error , mean_squared_error , r2_score
 import pandas as pd
-
+import joblib
 def model_training(df):
 
-    x = df.drop(columns = ['AQI','City','Date','AQI_Bucket'], axis = 1)
+    x = df.drop('AQI', axis = 1)
     y = df['AQI']
 
     x_train , x_test , y_train , y_test = train_test_split(x ,y, test_size =0.2 , random_state=26)
@@ -29,6 +29,7 @@ def model_training(df):
 
 
 if __name__ == "__main__":
-    df = pd.read_csv('data/raw/city_day.csv')
+    df = pd.read_csv('data/processed/air_quality_clean.csv')
     model = model_training(df)
     print(model)
+    joblib.dump(model , 'models/aqi_model.pkl')
