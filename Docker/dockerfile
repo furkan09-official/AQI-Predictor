@@ -1,0 +1,21 @@
+#set the base image
+FROM python:3.8-slim
+
+#setup the working directory
+WORKDIR /app
+
+
+#copy the requirement.txt
+copy ../requirement.txt .
+run pip install --no-cache-dir -r requirement.txt
+
+
+#copy project files
+copy ../ .
+
+#expose port for streamlit
+expose 8501
+
+
+#command to run the application
+CMD['streamlit run','src/model_api.py','--server.port = 8501','--server.address = 0.0.0.0']
